@@ -12,6 +12,15 @@ class Dispositivo(models.Model):
 def __str__(self):
     return self.nombre
 
+class Medicion(models.Model):
+    fecha_hora = models.DateTimeField()
+    valor = models.FloatField()
+    unidad = models.CharField(max_length=50)
+    id_dispositivo = models.ForeignKey(Dispositivo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.fecha_hora} - {self.valor} {self.unidad}"
+      
 class Zona(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
